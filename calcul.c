@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 09:31:57 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/16 17:03:13 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/24 18:58:12 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int ft_nb_line(char **argv)
 	{
 		nb_line++;
 	}
+	ft_putnbr(nb_line);
 	return(nb_line);
 }
 

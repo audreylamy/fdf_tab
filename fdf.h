@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 18:19:19 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/24 18:51:09 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,23 @@ typedef struct	s_map
 
 typedef struct	s_algob
 {
-	int				nb_pix_x;
-	int				nb_pix_y;
-	int				xinc;
-	int				yinc;
-	int				cumul;
+	int		nb_pix_x;
+	int		nb_pix_y;
+	int		xinc;
+	int		yinc;
+	int		cumul;
 }				t_algob;
 
 typedef struct	s_pixel
 {
 	void *mlx;
 	void *win;
-	void *img_ptr;
-	char *img;
-	int bpp;
-	int size_bits;
-	int endian;
-	unsigned int color;
+	// void *img_ptr;
+	// char *img;
+	// int bpp;
+	// int size_bits;
+	// int endian;
+	// unsigned int color;
 }				t_pixel;
 
 int main(int argc, char **argv);
@@ -80,7 +80,8 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map
 void ft_begin_fdf(t_map *map, t_pixel *tmp);
 void ft_create_image(t_map *map, t_pixel *tmp);
 
-void ft_draw_point(t_map *map, t_pixel *tmp);
+void ft_draw_line_horiz(t_map *map, t_pixel *tmp);
+void ft_draw_line_vertical(t_map *map, t_pixel *tmp);
 void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j);
 void print_vertical_line(t_map * map, t_pixel *tmp, int i, int j);
 void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp);

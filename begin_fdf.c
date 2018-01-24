@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:43:03 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 15:15:24 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/24 18:33:19 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void ft_begin_fdf(t_map *map, t_pixel *tmp)
 	tmp->mlx = mlx_init();
 	tmp->win = mlx_new_window(tmp->mlx, WINDOW_L, WINDOW_H, "mlx 42");
 	// ft_create_image(map, tmp);
-	ft_draw_point(map, tmp);
+	ft_draw_line_horiz(map, tmp);
+	ft_draw_line_vertical(map, tmp);
 	mlx_key_hook(tmp->win, my_key_funct, 0);
 	mlx_loop(tmp->mlx);
 }

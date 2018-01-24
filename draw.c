@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:58:12 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 18:19:17 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/24 18:39:02 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vecteur4 ft_transformation(int x, int y, int z, t_pixel *tmp, t_map *map)
 	return(vec_translation1);
 }
 
-void ft_draw_point(t_map *map, t_pixel *tmp)
+void ft_draw_line_horiz(t_map *map, t_pixel *tmp)
 {
 	int i;
 	int j;
@@ -61,6 +61,7 @@ void ft_draw_point(t_map *map, t_pixel *tmp)
 			x = map->lines[i]->points[j]->x;
 			y = map->lines[i]->points[j]->y;
 			z = map->lines[i]->points[j]->z;
+			ft_putnbr(map->lenght);
 			if (j + 1 != map->lenght)
 			{
 				print_horiz_line(map, tmp, i, j);
@@ -70,5 +71,34 @@ void ft_draw_point(t_map *map, t_pixel *tmp)
 			j++;
 		}
 		i++;
+	}
+}
+
+void ft_draw_line_vertical(t_map *map, t_pixel *tmp)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+	int z;
+	// t_vecteur4 vec_transformation;
+	j = 0;
+	while (j < map->lenght)
+	{
+		i = 0;
+		while (i < map->nb_line)
+		{
+			x = map->lines[i]->points[j]->x;
+			y = map->lines[i]->points[j]->y;
+			z = map->lines[i]->points[j]->z;
+			if (i + 1 != map->nb_line)
+			{
+				print_vertical_line(map, tmp, i, j);
+			}
+			else
+				break;
+			i++;
+		}
+		j++;
 	}
 }
