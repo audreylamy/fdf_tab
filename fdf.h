@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/23 22:16:50 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/24 18:19:19 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WINDOW_H 600
 # define TILE_WIDTH 30
 # define TILE_HEIGHT 30
-# include "minilibx/mlx.h"
+# include "mlx.h"
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -49,11 +49,25 @@ typedef struct	s_map
 	int lenght;
 }				t_map;
 
+typedef struct	s_algob
+{
+	int				nb_pix_x;
+	int				nb_pix_y;
+	int				xinc;
+	int				yinc;
+	int				cumul;
+}				t_algob;
+
 typedef struct	s_pixel
 {
 	void *mlx;
 	void *win;
-	void *img;
+	void *img_ptr;
+	char *img;
+	int bpp;
+	int size_bits;
+	int endian;
+	unsigned int color;
 }				t_pixel;
 
 int main(int argc, char **argv);
@@ -62,7 +76,17 @@ int	ft_getnbr(char *str);
 int ft_lenght(char **str);
 void ft_print_tab(t_map *map);
 t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map);
+
+void ft_begin_fdf(t_map *map, t_pixel *tmp);
+void ft_create_image(t_map *map, t_pixel *tmp);
+
 void ft_draw_point(t_map *map, t_pixel *tmp);
+void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j);
+void print_vertical_line(t_map * map, t_pixel *tmp, int i, int j);
+void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp);
+void bresenham1(t_algob *bre, t_pixel *tmp, int x0, int y0);
+void bresenham2(t_algob *bre, t_pixel *tmp, int x0, int y0);
+
 int my_key_funct(int keycode, t_pixel *param);
 
 /*MATRICE*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/23 22:16:53 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/24 17:23:49 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map
     while (str[i] != '\0')
     {
 		a_points = (t_points*)malloc(sizeof(t_points));
-		a_points->x = i;
-        a_points->y = index;
+		a_points->x = i * TILE_WIDTH;
+        a_points->y = index * TILE_HEIGHT;
 		a_points->w = 1;
 		if (ft_strchr(str[i], ',')) 
 		{
@@ -86,11 +86,7 @@ int	main(int argc, char **argv)
 		index++;
 	}
 	ft_print_tab(map);
-	tmp->mlx = mlx_init();
-	tmp->win = mlx_new_window(tmp->mlx, WINDOW_L, WINDOW_H, "mlx 42");
-	ft_draw_point(map, tmp);
-	mlx_key_hook(tmp->win, my_key_funct, 0);
-	mlx_loop(tmp->mlx);
+	ft_begin_fdf(map, tmp);
 	free(line);
 	if (close(fd) == -1)
 	{

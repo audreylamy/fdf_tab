@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+         #
+#    By: alamy <alamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 18:07:22 by lesanche          #+#    #+#              #
-#    Updated: 2018/01/23 22:15:32 by Deydou           ###   ########.fr        #
+#    Updated: 2018/01/24 18:17:07 by alamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = libft
 
 MLIBX_DIR = minilibx 
 
-SRC = main.c ft_print_tab.c calcul.c draw.c lib_fonction_matrix.c cal_matrix.c ft_print_matrix.c
+SRC = main.c ft_print_tab.c calcul.c draw.c lib_fonction_matrix.c cal_matrix.c ft_print_matrix.c begin_fdf.c bresenham.c
 
 OBJ = $(SRC:.c=.o)
 
