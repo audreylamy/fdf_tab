@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 18:51:09 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/25 16:28:55 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,23 @@ typedef struct	s_algob
 {
 	int		nb_pix_x;
 	int		nb_pix_y;
-	int		xinc;
-	int		yinc;
-	int		cumul;
+	int		incX;
+	int		incY;
 }				t_algob;
 
 typedef struct	s_pixel
 {
 	void *mlx;
 	void *win;
-	// void *img_ptr;
-	// char *img;
-	// int bpp;
-	// int size_bits;
-	// int endian;
-	// unsigned int color;
+	void *img_ptr;
+	char *img;
+	int bpp;
+	int size_bits;
+	int endian;
+	unsigned int color;
 }				t_pixel;
 
+/*PARSING*/
 int main(int argc, char **argv);
 int ft_nb_line(char **argv);
 int	ft_getnbr(char *str);
@@ -77,21 +77,24 @@ int ft_lenght(char **str);
 void ft_print_tab(t_map *map);
 t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map);
 
+/*IMAGE*/
 void ft_begin_fdf(t_map *map, t_pixel *tmp);
 void ft_create_image(t_map *map, t_pixel *tmp);
+void fill_pixel(t_pixel *tmp, t_map *map);
 
+/*BRESENHAM*/
 void ft_draw_line_horiz(t_map *map, t_pixel *tmp);
 void ft_draw_line_vertical(t_map *map, t_pixel *tmp);
 void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j);
 void print_vertical_line(t_map * map, t_pixel *tmp, int i, int j);
-void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp);
-void bresenham1(t_algob *bre, t_pixel *tmp, int x0, int y0);
-void bresenham2(t_algob *bre, t_pixel *tmp, int x0, int y0);
+void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp, int z);
+void ft_bresenham1(t_algob *b, t_pixel *tmp, int x0, int y0, int z);
+void ft_bresenham2(t_algob *b, t_pixel *tmp, int x0, int y0, int z);
 
+/*EVENT*/
 int my_key_funct(int keycode, t_pixel *param);
 
 /*MATRICE*/
-
 typedef struct s_vecteur4
 {
 	float x1;
@@ -132,6 +135,7 @@ matrix4_t  matrix_rotationX(int alpha);
 matrix4_t  matrix_rotationY(int alpha);
 matrix4_t  matrix_rotationZ(int alpha);
 t_vecteur4 create_vecteur4(int x, int y, int z, int w);
+t_vecteur4 ft_transformation(int x, int y, int z, t_pixel *tmp, t_map *map);
 t_vecteur4 ft_cal_trans(t_vecteur4 vecteur2, matrix4_t matrix_translation);
 t_vecteur4 ft_cal_rotationX(t_vecteur4 vecteur, matrix4_t matrix_rotationX);
 t_vecteur4 ft_cal_rotationY(t_vecteur4 vecteur, matrix4_t matrix_rotationY);

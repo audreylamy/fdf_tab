@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 17:23:49 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/25 15:45:16 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map
 	a = 0;
 	str = ft_strsplit(line, ' ');
 	map->lenght = ft_lenght(str);
-	(*points) = (t_points**)malloc(sizeof(t_points) * map->lenght);
+	(*points) = (t_points**)malloc(sizeof(t_points) * map->lenght + 1);
     while (str[i] != '\0')
     {
 		a_points = (t_points*)malloc(sizeof(t_points));
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 		map->lines[index] = elts;
 		index++;
 	}
-	ft_print_tab(map);
+	// ft_print_tab(map);
 	ft_begin_fdf(map, tmp);
 	free(line);
 	if (close(fd) == -1)

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:15:41 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/24 18:16:43 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/25 17:30:04 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@ void print_vertical_line(t_map * map, t_pixel *tmp, int i, int j)
 	int y0;
 	int x1;
 	int y1;
+	int z;
+	// t_vecteur4 vec_transformation1;
+	// t_vecteur4 vec_transformation2;
+
 	x0 = map->lines[i]->points[j]->x;
 	y0 = map->lines[i]->points[j]->y;
 	x1 = map->lines[i + 1]->points[j]->x;
 	y1 = map->lines[i + 1]->points[j]->y;
-	ft_bresenham(x0, y0, x1, y1, tmp);
+	z = map->lines[i]->points[j]->z;
+	// vec_transformation1 = ft_transformation(x0, y0, z, tmp, map);
+	// vec_transformation2 = ft_transformation(x1, y1, z, tmp, map);
+	ft_bresenham(x0, y0, x1, y1, tmp, z);
 }
 
 void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j)
@@ -31,67 +38,76 @@ void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j)
 	int y0;
 	int x1;
 	int y1;
+	int z;
+	// t_vecteur4 vec_transformation1;
+	// t_vecteur4 vec_transformation2;
+
 	x0 = map->lines[i]->points[j]->x;
 	y0 = map->lines[i]->points[j]->y;
 	x1 = map->lines[i]->points[j + 1]->x;
 	y1 = map->lines[i]->points[j + 1]->y;
-	ft_bresenham(x0, y0, x1, y1, tmp);
+	z = map->lines[i]->points[j]->z;
+	// vec_transformation1 = ft_transformation(x0, y0, z, tmp, map);
+	// vec_transformation2 = ft_transformation(x1, y1, z, tmp, map);
+	// ft_bresenham(vec_transformation1.x1, vec_transformation1.y1, 
+	// vec_transformation2.x1, vec_transformation2.y1, tmp, z);
+	ft_bresenham(x0, y0, x1, y1, tmp, z);
 }
 
-void	bresenham1(t_algob *bre, t_pixel *tmp, int x0, int y0)
+void	ft_bresenham1(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
 {
 	int i;
+	int res;
 
 	i = 1;
-	bre->cumul = bre->nb_pix_x / 2;
-	while (i <= bre->nb_pix_x)
+	res = b->nb_pix_x / 2;
+	while (i <= b->nb_pix_x)
 	{
-		x0 = x0 + bre->xinc;
-		bre->cumul = bre->cumul + bre->nb_pix_y;
-		if (bre->cumul >= bre->nb_pix_x)
+		x0 = x0 + b->incX;
+		res = res + b->nb_pix_y;
+		if (res >= b->nb_pix_x)
 		{
-			bre->cumul = bre->cumul - bre->nb_pix_x;
-			y0 = y0 + bre->yinc;
+			res = res - b->nb_pix_x;
+			y0 = y0 + b->incY;
 		}
 		mlx_pixel_put(tmp->mlx, tmp->win, x0, y0, 0xFFFFFF);
 		i++;
 	}
 }
 
-void	bresenham2(t_algob *bre, t_pixel *tmp, int x0, int y0)
+void	ft_bresenham2(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
 {
 	int i;
+	int res;
 
 	i = 1;
-	bre->cumul = bre->nb_pix_x / 2;
-	bre->cumul = bre->nb_pix_y / 2;
-	while (i <= bre->nb_pix_y)
+	res = b->nb_pix_y / 2;
+	while (i <= b->nb_pix_y)
 	{
-		y0 = y0 + bre->yinc;
-		bre->cumul = bre->cumul + bre->nb_pix_x;
-		if (bre->cumul >= bre->nb_pix_y)
+		y0 = y0 + b->incY;
+		res = res + b->nb_pix_x;
+		if (res >= b->nb_pix_y)
 		{
-			bre->cumul = bre->cumul - bre->nb_pix_y;
-			x0 = x0 + bre->xinc;
+			res = res - b->nb_pix_y;
+			x0 = x0 + b->incX;
 		}
 		mlx_pixel_put(tmp->mlx, tmp->win, x0, y0, 0xFFFFFF);
 		i++;
 	}
 }
 
-void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp)
+void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp, int z)
 {
-	t_algob bre;
+	t_algob b;
 
-	bre.nb_pix_x = x1 - x0;
-	bre.nb_pix_y = y1 - y0;
-	bre.xinc = -1;
-	bre.yinc = -1;
-	bre.nb_pix_x = bre.nb_pix_x;
-	bre.nb_pix_y = bre.nb_pix_y;
-	mlx_pixel_put(tmp->mlx, tmp->win, x0, y0, 0xFFFFFF);
-	if (bre.nb_pix_x > bre.nb_pix_y)
-		bresenham1(&bre, tmp, x0, y0);
-	else
-		bresenham2(&bre, tmp, x0, y0);
+	b.nb_pix_x = x1 - x0;
+	b.nb_pix_y = y1 - y0;
+	b.incX = (x0 > 0) ? 1 : -1;
+	b.incY = (y0 > 0) ? 1 : -1;
+	x0 = ft_abs(x0);
+	y0 = ft_abs(y0);
+	if (b.nb_pix_x > b.nb_pix_y)
+		ft_bresenham1(&b, tmp, x0, y0, z);
+	else if (b.nb_pix_x < b.nb_pix_y)
+		ft_bresenham2(&b, tmp, x0, y0, z);
 }
