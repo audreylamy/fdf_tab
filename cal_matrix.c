@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cal_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:46:30 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/23 14:42:25 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/26 17:08:45 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_vecteur4 ft_cal_trans(t_vecteur4 vecteur2, matrix4_t matrix_translation)
+t_vecteur4 ft_cal_translation(t_vecteur4 vecteur2, matrix4_t matrix_translation)
 {
 	t_vecteur4 vec_translation;
 

@@ -6,13 +6,13 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/25 15:45:16 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/26 14:16:37 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map)
+t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *elts)
 {
 	int			i;
     int         z;
@@ -24,8 +24,8 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_map *map
     z = 0;
 	a = 0;
 	str = ft_strsplit(line, ' ');
-	map->lenght = ft_lenght(str);
-	(*points) = (t_points**)malloc(sizeof(t_points) * map->lenght + 1);
+	elts->lenght = ft_lenght(str);
+	(*points) = (t_points**)malloc(sizeof(t_points) * elts->lenght);
     while (str[i] != '\0')
     {
 		a_points = (t_points*)malloc(sizeof(t_points));
@@ -60,9 +60,9 @@ int	main(int argc, char **argv)
 {
 	char *line;
 	t_map *map;
-	t_elts *elts;
+	t_lines *elts;
 	t_points **position;
-	t_pixel *tmp;
+	t_env *tmp;
 	int index;
 	int fd;
 
@@ -70,18 +70,17 @@ int	main(int argc, char **argv)
 	index = 0;
 	if (argc != 2)
 		return(0);
-	tmp = (t_pixel*)malloc(sizeof(t_pixel));
+	tmp = (t_env*)malloc(sizeof(t_env));
 	map = (t_map*)malloc(sizeof(t_map));
 	map->nb_line = ft_nb_line(argv);
-	map->lines = (t_elts**)malloc(sizeof(t_elts) * ft_nb_line(argv));
+	map->lines = (t_lines**)malloc(sizeof(t_lines) * ft_nb_line(argv));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (1);
 	while (get_next_line(fd, &line) > 0)
 	{	
-		elts = (t_elts*)malloc(sizeof(t_elts));
-		elts->points = ft_stock_points(line, index, &position, map);
-		//elts->len = map->lenght;
+		elts = (t_lines*)malloc(sizeof(t_lines));
+		elts->points = ft_stock_points(line, index, &position, elts);
 		map->lines[index] = elts;
 		index++;
 	}

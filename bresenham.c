@@ -6,55 +6,45 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:15:41 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/25 17:30:04 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/26 13:31:39 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void print_vertical_line(t_map * map, t_pixel *tmp, int i, int j)
-{
-	int x0;
-	int y0;
-	int x1;
-	int y1;
-	int z;
-	// t_vecteur4 vec_transformation1;
-	// t_vecteur4 vec_transformation2;
+// void print_vertical_line(t_map * map, t_env *tmp, int i, int j)
+// {
+// 	int x0;
+// 	int y0;
+// 	int x1;
+// 	int y1;
+// 	int z;
 
-	x0 = map->lines[i]->points[j]->x;
-	y0 = map->lines[i]->points[j]->y;
-	x1 = map->lines[i + 1]->points[j]->x;
-	y1 = map->lines[i + 1]->points[j]->y;
-	z = map->lines[i]->points[j]->z;
-	// vec_transformation1 = ft_transformation(x0, y0, z, tmp, map);
-	// vec_transformation2 = ft_transformation(x1, y1, z, tmp, map);
-	ft_bresenham(x0, y0, x1, y1, tmp, z);
-}
+// 	x0 = map->lines[i]->points[j]->x;
+// 	y0 = map->lines[i]->points[j]->y;
+// 	x1 = map->lines[i + 1]->points[j]->x;
+// 	y1 = map->lines[i + 1]->points[j]->y;
+// 	z = map->lines[i]->points[j]->z;
+// 	ft_bresenham(x0, y0, x1, y1, tmp, z);
+// }
 
-void print_horiz_line(t_map * map, t_pixel *tmp, int i, int j)
-{
-	int x0;
-	int y0;
-	int x1;
-	int y1;
-	int z;
-	// t_vecteur4 vec_transformation1;
-	// t_vecteur4 vec_transformation2;
+// void print_horiz_line(t_map *map, t_env *tmp, int i, int j)
+// {
+// 	int x0;
+// 	int y0;
+// 	int x1;
+// 	int y1;
+// 	int z;
 
-	x0 = map->lines[i]->points[j]->x;
-	y0 = map->lines[i]->points[j]->y;
-	x1 = map->lines[i]->points[j + 1]->x;
-	y1 = map->lines[i]->points[j + 1]->y;
-	z = map->lines[i]->points[j]->z;
-	// vec_transformation1 = ft_transformation(x0, y0, z, tmp, map);
-	// vec_transformation2 = ft_transformation(x1, y1, z, tmp, map);
-	// ft_bresenham(vec_transformation1.x1, vec_transformation1.y1, 
-	// vec_transformation2.x1, vec_transformation2.y1, tmp, z);
-	ft_bresenham(x0, y0, x1, y1, tmp, z);
-}
+// 	x0 = map->lines[i]->points[j]->x;
+// 	y0 = map->lines[i]->points[j]->y;
+// 	x1 = map->lines[i]->points[j + 1]->x;
+// 	y1 = map->lines[i]->points[j + 1]->y;
+// 	z = map->lines[i]->points[j]->z;
+// 	ft_bresenham(x0, y0, x1, y1, tmp);
+// }
 
-void	ft_bresenham1(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
+void	ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0)
 {
 	int i;
 	int res;
@@ -75,7 +65,7 @@ void	ft_bresenham1(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
 	}
 }
 
-void	ft_bresenham2(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
+void	ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0)
 {
 	int i;
 	int res;
@@ -96,7 +86,7 @@ void	ft_bresenham2(t_algob *b, t_pixel *tmp, int x0, int y0, int z)
 	}
 }
 
-void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp, int z)
+void ft_bresenham(int x0, int y0, int x1, int y1, t_env *tmp)
 {
 	t_algob b;
 
@@ -107,7 +97,7 @@ void ft_bresenham(int x0, int y0, int x1, int y1, t_pixel *tmp, int z)
 	x0 = ft_abs(x0);
 	y0 = ft_abs(y0);
 	if (b.nb_pix_x > b.nb_pix_y)
-		ft_bresenham1(&b, tmp, x0, y0, z);
+		ft_bresenham1(&b, tmp, x0, y0);
 	else if (b.nb_pix_x < b.nb_pix_y)
-		ft_bresenham2(&b, tmp, x0, y0, z);
+		ft_bresenham2(&b, tmp, x0, y0);
 }

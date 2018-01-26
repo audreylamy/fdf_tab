@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 17:18:55 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/23 21:58:44 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/26 09:52:53 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    ft_print_tab(t_map *map)
     while (i < map->nb_line)
 	{
         j = 0;
-		while (j < map->lenght)
+		while (j < map->lines[i]->lenght)
 		{
             ft_putnbr(map->lines[i]->points[j]->x);
             ft_putnbr(map->lines[i]->points[j]->y);
