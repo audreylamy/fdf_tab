@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:58:12 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/26 13:47:45 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 17:22:04 by Deydou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_draw_line_horiz(t_map *map, t_env *tmp)
 			// ft_putnbr(map->lines[i]->lenght);
 			if (j + 1 != map->lines[i]->lenght)
 			{
-				ft_bresenham(x, y, x1, y1, tmp);
+				ft_bresenham(x, y, x1, y1, tmp, map);
 			}
 			else
 				break;
@@ -74,7 +74,7 @@ void ft_draw_line_vertical(t_map *map, t_env *tmp)
 			y1 = map->lines[i + 1]->points[j]->y;
 			if (i + 1 != map->nb_line)
 			{
-				ft_bresenham(x, y, x1, y1, tmp);
+				ft_bresenham(x, y, x1, y1, tmp, map);
 			}
 			else
 				break;

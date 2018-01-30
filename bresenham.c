@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:15:41 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/26 13:31:39 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 17:39:50 by Deydou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_x;
 			y0 = y0 + b->incY;
 		}
-		mlx_pixel_put(tmp->mlx, tmp->win, x0, y0, 0xFFFFFF);
+		fill_pixel3(tmp, x0, y0, 0x00FFFF);
 		i++;
 	}
 }
@@ -81,7 +81,7 @@ void	ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_y;
 			x0 = x0 + b->incX;
 		}
-		mlx_pixel_put(tmp->mlx, tmp->win, x0, y0, 0xFFFFFF);
+		fill_pixel3(tmp, x0, y0, 0x00FFFF);
 		i++;
 	}
 }

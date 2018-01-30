@@ -3,46 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   begin_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:43:03 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/30 11:46:09 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 17:39:47 by Deydou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// void fill_pixel(t_pixel *tmp, t_map *map)
-// {
-// 	int i;
-// 	int j;
+void fill_pixel(t_env *tmp, t_map *map)
+{
+ 	int i;
+ 	int j;
 
-// 	i = -1;
-// 	while(i < WINDOW_H)
-// 	{
-// 		j = -1;
-// 		while(j < WINDOW_L)
-// 		{
-// 			if (j % 2)
-// 				((int*)tmp->img)[(i * WINDOW_L) + j] = 0x00FFFF;
-// 			else
-// 				((int*)tmp->img)[(i * WINDOW_L) + j] = 0;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+ 	i = 0;
+ 	while(i < WINDOW_H)
+ 	{
+ 		j = 0;
+ 		while(j < WINDOW_L)
+ 		{
+ 			if (j % 2)
+ 				((int*)tmp->img->data)[(i * WINDOW_L) + j] = 0x00FFFF;
+ 			else
+ 				((int*)tmp->img->data)[(i * WINDOW_L) + j] = 0;
+ 			j++;
+ 		}
+ 		i++;
+ 	}
+ }
 
-// void ft_create_image(t_map *map, t_pixel *tmp)
-// {
-// 	tmp->img_ptr = mlx_new_image(tmp->mlx, WINDOW_L, WINDOW_H);
-// 	tmp->img = mlx_get_data_addr(tmp->img_ptr, &tmp->bpp, &tmp->size_bits, &tmp->endian);
-// 	fill_pixel(tmp, map);
-// 	ft_putchar('A');
-// 	// tmp->color = mlx_get_color_value(tmp->mlx, 0xFFFFFF);
-// 	mlx_put_image_to_window(tmp->mlx, tmp->win, tmp->img_ptr, 0, 0);
-// 	// mlx_destroy_image(tmp->mlx, tmp->img_ptr);
-// }
+// print des points du debut
+ /*void fill_pixel2(t_env *tmp, t_map *map, int color)
+ {	
+ 	int i;
+ 	int j;
+
+ 	i = 0;
+ 	while(i < 11)
+ 	{
+ 		j = 0;
+ 		while(j < 18)
+ 		{
+ 			((int*)tmp->img->data)[(map->lines[i]->points[j]->y * 800) + 
+			map->lines[i]->points[j]->x] = color;
+ 			j++;
+ 		}
+ 		i++;
+ 	}
+
+ }*/
+
+void fill_pixel3(t_env *tmp, int x, int y, int color)
+ {	
+ 	((int*)tmp->img->data)[(y * 800) + x] = color;
+ }
+
+ void ft_create_image(t_map *map, t_env *tmp)
+ {
+ 	tmp->img->img_ptr = mlx_new_image(tmp->mlx, WINDOW_L, WINDOW_H);
+ 	tmp->img->data = (int*)mlx_get_data_addr(tmp->img->img_ptr, &tmp->img->bpp, &tmp->img->size_bits, &tmp->img->endian);
+ 	//fill_pixel(tmp, map);
+	ft_transform_map(map, tmp);
+	//fill_pixel2(tmp, map, 0x00FFFF);
+	tmp->img->color = mlx_get_color_value(tmp->mlx, 0xFFFFFF);
+ 	mlx_put_image_to_window(tmp->mlx, tmp->win, tmp->img->img_ptr, 0, 0);
+	mlx_destroy_image(tmp->mlx, tmp->img->img_ptr);
+ }
 
 t_vecteur4 ft_transformation(int x, int y, int z, int w, int i, t_map *map)
 {
@@ -103,8 +130,7 @@ void ft_begin_fdf(t_map *map, t_env *tmp)
 {
 	tmp->mlx = mlx_init();
 	tmp->win = mlx_new_window(tmp->mlx, WINDOW_L, WINDOW_H, "mlx 42");
-	ft_transform_map(map, tmp);
-	// ft_create_image(map, tmp);
+	ft_create_image(map, tmp);
 	mlx_key_hook(tmp->win, my_key_funct, 0);
 	mlx_loop(tmp->mlx);
 }

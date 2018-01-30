@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/30 11:53:56 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 17:39:44 by Deydou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define BUFF_SIZE 32
-# define WINDOW_L 1500
-# define WINDOW_H 900
+# define WINDOW_L 800
+# define WINDOW_H 600
 # define TILE_WIDTH 25
 # define TILE_HEIGHT 25
 # define PI 3.14159265359
-# include "mlx.h"
+# include "minilibx/mlx.h"
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -57,16 +57,21 @@ typedef struct	s_algob
 	int		incY; //icrementation
 }				t_algob;
 
-typedef struct	s_env
+typedef struct	s_img
 {
-	void *mlx;
-	void *win;
 	void *img_ptr;
-	char *img;
+	int *data;
 	int bpp;
 	int size_bits;
 	int endian;
 	unsigned int color;
+}				t_img;
+
+typedef struct	s_env
+{
+	void *mlx;
+	void *win;
+	t_img *img;
 }				t_env;
 
 /*PARSING*/
@@ -80,7 +85,9 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *e
 /*IMAGE*/
 void ft_begin_fdf(t_map *map, t_env *tmp);
 void ft_create_image(t_map *map, t_env *tmp);
-void fill_pixel(t_env *tmp, t_map *map);
+//void fill_pixel(t_env *tmp, t_map *map);
+void fill_pixel3(t_env *tmp, int x, int y, int color);
+//void fill_pixel2(t_env *tmp, int x, int y, int color);
 
 /*BRESENHAM*/
 void ft_transform_map(t_map *map, t_env *tmp);
