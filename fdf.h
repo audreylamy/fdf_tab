@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/26 17:09:18 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 11:53:56 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct	s_algob
 	int		nb_pix_x;
 	int		nb_pix_y;
 	int		incX;
-	int		incY;
+	int		incY; //icrementation
 }				t_algob;
 
 typedef struct	s_env

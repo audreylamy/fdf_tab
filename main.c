@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/26 14:16:37 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/30 11:54:38 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *e
     }
 	return(*points);
 }
+
+
 
 int	main(int argc, char **argv)
 {
