@@ -3,46 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:15:41 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/30 17:39:50 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/31 09:57:06 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// void print_vertical_line(t_map * map, t_env *tmp, int i, int j)
-// {
-// 	int x0;
-// 	int y0;
-// 	int x1;
-// 	int y1;
-// 	int z;
-
-// 	x0 = map->lines[i]->points[j]->x;
-// 	y0 = map->lines[i]->points[j]->y;
-// 	x1 = map->lines[i + 1]->points[j]->x;
-// 	y1 = map->lines[i + 1]->points[j]->y;
-// 	z = map->lines[i]->points[j]->z;
-// 	ft_bresenham(x0, y0, x1, y1, tmp, z);
-// }
-
-// void print_horiz_line(t_map *map, t_env *tmp, int i, int j)
-// {
-// 	int x0;
-// 	int y0;
-// 	int x1;
-// 	int y1;
-// 	int z;
-
-// 	x0 = map->lines[i]->points[j]->x;
-// 	y0 = map->lines[i]->points[j]->y;
-// 	x1 = map->lines[i]->points[j + 1]->x;
-// 	y1 = map->lines[i]->points[j + 1]->y;
-// 	z = map->lines[i]->points[j]->z;
-// 	ft_bresenham(x0, y0, x1, y1, tmp);
-// }
 
 void	ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0)
 {
@@ -60,7 +28,7 @@ void	ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_x;
 			y0 = y0 + b->incY;
 		}
-		fill_pixel3(tmp, x0, y0, 0x00FFFF);
+		fill_pixel(tmp, x0, y0, 0x00FFFF);
 		i++;
 	}
 }
@@ -81,7 +49,7 @@ void	ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_y;
 			x0 = x0 + b->incX;
 		}
-		fill_pixel3(tmp, x0, y0, 0x00FFFF);
+		fill_pixel(tmp, x0, y0, 0x00FFFF);
 		i++;
 	}
 }

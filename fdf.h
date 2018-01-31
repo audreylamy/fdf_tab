@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Deydou <Deydou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/30 17:39:44 by Deydou           ###   ########.fr       */
+/*   Updated: 2018/01/31 10:33:21 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,13 @@ int ft_nb_line(char **argv);
 int	ft_getnbr(char *str);
 int ft_lenght(char **str);
 void ft_print_tab(t_map *map);
+t_map *ft_begin_parse(int fd, char *line, char **argv);
 t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *elts);
 
 /*IMAGE*/
 void ft_begin_fdf(t_map *map, t_env *tmp);
 void ft_create_image(t_map *map, t_env *tmp);
-//void fill_pixel(t_env *tmp, t_map *map);
-void fill_pixel3(t_env *tmp, int x, int y, int color);
-//void fill_pixel2(t_env *tmp, int x, int y, int color);
+void fill_pixel(t_env *tmp, int x, int y, int color);
 
 /*BRESENHAM*/
 void ft_transform_map(t_map *map, t_env *tmp);
@@ -102,7 +101,7 @@ void ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0);
 /*EVENT*/
 int my_key_funct(int keycode, t_env *param);
 
-/*MATRICE*/
+/*MATRIX*/
 typedef struct s_vecteur4
 {
 	float x1;
@@ -148,7 +147,6 @@ t_vecteur4 ft_cal_translation(t_vecteur4 vecteur2, matrix4_t matrix_translation)
 t_vecteur4 ft_cal_rotationX(t_vecteur4 vecteur, matrix4_t matrix_rotationX);
 t_vecteur4 ft_cal_rotationY(t_vecteur4 vecteur, matrix4_t matrix_rotationY);
 t_vecteur4 ft_cal_rotationZ(t_vecteur4 vecteur, matrix4_t matrix_rotationZ);
-// t_vecteur4 m4_mult_pos(t_vecteur4 position, matrix4_t matrix); 
 void ft_print_matrix(matrix4_t matrix);
 
 #endif

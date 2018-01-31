@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:47:27 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/26 17:08:53 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 09:51:12 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,3 @@ t_vecteur4 create_vecteur4(int x, int y, int z, int w)
 	new_vecteur4.w1= w;
 	return(new_vecteur4);
 }
-
-// t_vecteur4 m4_mult_pos(t_vecteur4 position, matrix4_t matrix) 
-// {
-// 	t_vecteur4 result = create_vecteur4(
-// 		matrix.m[0][0] * position.x1 + matrix.m[0][1] * position.y1 + matrix.m[0][2] * position.z1 + matrix.m[0][3] * position.w1,
-// 		matrix.m[1][0] * position.x1 + matrix.m[1][1] * position.y1 + matrix.m[1][2] * position.z1 + matrix.m[1][3] * position.w1,
-//         matrix.m[2][0] * position.x1 + matrix.m[2][1] * position.y1 + matrix.m[2][2] * position.z1 + matrix.m[2][3] * position.w1,
-//         matrix.m[3][0] * position.x1 + matrix.m[3][1] * position.y1 + matrix.m[3][2] * position.z1 + matrix.m[3][3] * position.w1
-// 	);	
-// 	return result;
-// }

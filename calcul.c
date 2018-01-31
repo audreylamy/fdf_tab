@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 09:31:57 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/25 15:43:05 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 09:53:28 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ int ft_nb_line(char **argv)
 	}
 	return(nb_line);
 }
-
-// static void afficher_tab(char **str)
-// {
-// 	int y;
-
-// 	y = 0;
-// 	while(str[y] != '\0')
-// 	{
-// 		ft_putchar(str[y][0]);
-// 		y++;
-// 	}
-// 	ft_putchar('\n');
-// }
 
 int ft_lenght(char **str)
 {
@@ -72,3 +59,17 @@ int	ft_getnbr(char *str)
 		result = result * (-1);
 	return (result);
 }
+
+
+// static void afficher_tab(char **str)
+// {
+// 	int y;
+
+// 	y = 0;
+// 	while(str[y] != '\0')
+// 	{
+// 		ft_putchar(str[y][0]);
+// 		y++;
+// 	}
+// 	ft_putchar('\n');
+// }
